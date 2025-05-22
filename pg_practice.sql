@@ -3,12 +3,14 @@ CREATE DATABASE practice;
 -- 問題2. postgresqlでpracticeデータベースのusersテーブルを生成するSQL文を記述してください。
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  age INTEGER
+  name VARCHAR(255) NOT NULL DEFAULT '',
+  age INT NOT NULL DEFAULT 0,
+  gender VARCHAR(10) NOT NULL DEFAULT 'Other'
 );
 -- 問題3. postgresqlでpracticeデータベースのjobsテーブルを生成するSQL文を記述してください。
 CREATE TABLE jobs (
   id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  salary INTEGER
+  user_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL DEFAULT '会社員',
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
